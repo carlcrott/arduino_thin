@@ -32,6 +32,8 @@ module Thin
     
     # Get the connection ready to process a request.
     def post_init
+      connection_ip = get_peername[2,6].unpack("nC4").join("-")
+      log connection_ip
       @request  = Request.new
       @response = Response.new
     end
